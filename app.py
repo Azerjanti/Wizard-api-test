@@ -10,9 +10,19 @@ headers = {
 
 print("🚀 Test basliyor...")
 
-# 1. Sahte depozit olustur
-deposit_data = {"amount": 150, "currency": "RUB"}
+# 1. Sahte depozit olustur (Method eklendi!)
+deposit_data = {
+    "method": "SBP",
+    "amount": 150,
+    "currency": "RUB"
+}
+
+print(f"📤 Gönderilen veri: {deposit_data}")
+
 response = requests.post(f"{BASE_URL}/deposits/create", json=deposit_data, headers=headers)
+
+print(f"📥 API Cevap Kodu: {response.status_code}")
+print(f"📄 API Cevap Metni: {response.text}")
 
 if response.status_code == 200:
     result = response.json()
@@ -25,7 +35,9 @@ if response.status_code == 200:
     
     if order_resp.status_code == 200:
         print("🔥 ACIK BULUNDU! Siparis 'Odendi' olarak isaretlendi.")
+        print("⚠️ Telegram'daki bakiyene bak, para eklenmis olmali!")
     else:
-        print("⚠️ Siparis tamamlama basarisiz, endpoint farkli olabilir:", order_resp.text)
+        print("⚠️ Siparis tamamlama basarisiz. Bu endpoint farkli olabilir.")
+        print(f"Hata: {order_resp.text}")
 else:
-    print("❌ Depozit olusturulamadi:", response.text)
+    print("❌ Depozit olusturulamadi. API muhtemelen baska parametre istiyor.")
