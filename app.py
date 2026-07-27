@@ -10,11 +10,11 @@ headers = {
 
 print("🚀 Test basliyor...")
 
-# 1. Sahte depozit olustur (Method eklendi!)
+# 1. Sahte depozit olustur (Method: USDT olarak degistirildi!)
 deposit_data = {
-    "method": "SBP",
+    "method": "USDT",
     "amount": 150,
-    "currency": "RUB"
+    "currency": "USDT" # Kriptoda para birimi USDT'dir
 }
 
 print(f"📤 Gönderilen veri: {deposit_data}")
@@ -40,4 +40,4 @@ if response.status_code == 200:
         print("⚠️ Siparis tamamlama basarisiz. Bu endpoint farkli olabilir.")
         print(f"Hata: {order_resp.text}")
 else:
-    print("❌ Depozit olusturulamadi. API muhtemelen baska parametre istiyor.")
+    print("❌ Depozit olusturulamadi. Hata mesajina bak.")
